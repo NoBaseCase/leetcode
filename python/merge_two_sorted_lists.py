@@ -1,3 +1,5 @@
+from typing import Optional
+
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -5,31 +7,34 @@ class ListNode:
         self.next = next
 
 
-class Solution:
-    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        
-        if not l1 and not l2:
-            return node
-        elif not l1 and l2:
-            return l2
-        elif l1 and not l2:
-            return l1
+def merge_two_lists(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    # temporary node to start new list
+    output = ListNode(None)
+    # keeps track of the current place in the new list
+    current = output
+    # if l1 and l2 exist:
+    while l1 and l2:
+        # sets new list to point to l1, then l1 moves to the next node on the right
+        if l1.val < l2.val:
+            current.next = l1
+            l1 = l1.next
         else:
-            output = ListNode()
-            while(temp != None):
-                if (l1.val == l2.val):
-                    output.val = l1.val
-                    output.next = l2
-                    output.next.next = 
-                    
+            current.next = l2
+            l2 = l2.next
+        # update the position of current in preparation for the next node
+        current = current.next
+    # if only one list left, point the next field of the node to that list
+    if l1:
+        current.next = l1
+    else:
+        current.next = l2
+
+    # Since the output starts with None value, we must return the next node, if it exists
+    return output.next
 
 
-# def list_size(nodes):
-#     count = 0
-#     while(nodes != None):
-#         count += 1
-#         nodes = nodes.next
-#     return count
+class Solution:
+    pass
 
 
 c = ListNode(4, None)
@@ -40,5 +45,5 @@ y = ListNode(1, None)
 x = ListNode(3, y)
 z = ListNode(4, x)
 
-print(list_size(a))
-# print(a.next)
+test = Solution()
+print(merge_two_lists(a, z))
