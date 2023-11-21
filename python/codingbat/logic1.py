@@ -54,3 +54,135 @@ squirrel_play(70, False) → True
 squirrel_play(95, False) → False
 squirrel_play(95, True) → True
 """
+
+
+def squirrel_play(temp, is_summer):
+    if is_summer:
+        if 60 <= temp <= 100:
+            return True
+    else:
+        if 60 <= temp <= 90:
+            return True
+    return False
+
+
+"""
+
+You are driving a little too fast, and a police officer stops you.
+Write code to compute the result, encoded as an int value: 0=no ticket, 1=small ticket, 2=big ticket.
+If speed is 60 or less, the result is 0. If speed is between 61 and 80 inclusive, the result is 1.
+If speed is 81 or more, the result is 2. Unless it is your birthday 
+-- on that day, your speed can be 5 higher in all cases.
+
+caught_speeding(60, False) → 0
+caught_speeding(65, False) → 1
+caught_speeding(65, True) → 0
+"""
+
+
+def caught_speeding(speed, is_birthday):
+    if is_birthday:
+        speed -= 5
+    if speed <= 60:
+        return 0
+    elif 60 < speed <= 80:
+        return 1
+    else:
+        return 2
+
+
+"""
+Given 2 ints, a and b, return their sum. 
+However, sums in the range 10..19 inclusive, are forbidden, so in that case just return 20.
+
+sorta_sum(3, 4) → 7
+sorta_sum(9, 4) → 20
+sorta_sum(10, 11) → 21
+"""
+
+
+def sorta_sum(a, b):
+    if 10 <= (a + b) <= 19:
+        return 20
+    else:
+        return a + b
+
+
+"""
+Given a day of the week encoded as 0=Sun, 1=Mon, 2=Tue, ...6=Sat, and a boolean indicating if we are on vacation, 
+return a string of the form "7:00" indicating when the alarm clock should ring.
+Weekdays, the alarm should be "7:00" and on the weekend it should be "10:00". 
+Unless we are on vacation -- then on weekdays it should be "10:00" and weekends it should be "off".
+
+alarm_clock(1, False) → '7:00'
+alarm_clock(5, False) → '7:00'
+alarm_clock(0, False) → '10:00'
+"""
+
+
+def alarm_clock(day, vacation):
+    if vacation:
+        if day == 6 or day == 0:
+            return "off"
+        return "10:00"
+    else:
+        if day == 6 or day == 0:
+            return "10:00"
+        return "7:00"
+
+
+"""
+The number 6 is a truly great number.
+Given two int values, a and b, return True if either one is 6. 
+Or if their sum or difference is 6. 
+Note: the function abs(num) computes the absolute value of a number.
+
+love6(6, 4) → True
+love6(4, 5) → False
+love6(1, 5) → True
+"""
+
+
+def love6(a, b):
+    if a == 6 or b == 6:
+        return True
+    if a + b == 6 or abs(a - b) == 6:
+        return True
+    return False
+
+
+"""
+
+Given a number n, return True if n is in the range 1..10, inclusive.
+Unless outside_mode is True, in which case return True if the number is less or equal to 1, or greater or equal to 10.
+
+
+in1to10(5, False) → True
+in1to10(11, False) → False
+in1to10(11, True) → True
+"""
+
+
+def in1to10(n, outside_mode):
+    if outside_mode:
+        if n <= 1 or n >= 10:
+            return True
+        return False
+    if n >= 1 and n <= 10:
+        return True
+    return False
+
+
+"""
+Given a non-negative number "num", return True if num is within 2 of a multiple of 10. 
+Note: (a % b) is the remainder of dividing a by b, so (7 % 5) is 2. 
+See also: Introduction to Mod
+
+near_ten(12) → True
+near_ten(17) → False
+near_ten(19) → True
+"""
+
+
+def near_ten(num):
+    return (num % 10) <= 2 or (num % 10) >= 8
